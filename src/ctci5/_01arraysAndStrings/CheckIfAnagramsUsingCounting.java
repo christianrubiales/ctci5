@@ -1,6 +1,6 @@
 package ctci5._01arraysAndStrings;
 
-
+// O(n) time, O(1) space
 public class CheckIfAnagramsUsingCounting {
 	
 	static boolean areAnagrams(String x, String y) {
