@@ -3,6 +3,7 @@ package ctci5._01arraysAndStrings;
 public class IsRotation {
 	
 	static boolean isRotation(String s1, String s2) {
+		// short-circuit checking
 		if (s1 == null && s2 == null) {
 			return true;
 		}

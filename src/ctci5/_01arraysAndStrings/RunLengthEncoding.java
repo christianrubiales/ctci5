@@ -3,6 +3,7 @@ package ctci5._01arraysAndStrings;
 public class RunLengthEncoding {
 	
 	static String encode(String s) {
+		// short-circuit checking
 		if (s == null || s.length() == 0) {
 			return s;
 		}
@@ -26,6 +27,7 @@ public class RunLengthEncoding {
 	}
 	
 	static String decode(String s) {
+		// short-circuit checking
 		if (s == null || s.length() == 0) {
 			return s;
 		}

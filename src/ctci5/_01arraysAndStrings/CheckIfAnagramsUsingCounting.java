@@ -4,6 +4,7 @@ package ctci5._01arraysAndStrings;
 public class CheckIfAnagramsUsingCounting {
 	
 	static boolean areAnagrams(String x, String y) {
+		// short-circuit checking
 		if (x == null && y == null) {
 			return true;
 		}

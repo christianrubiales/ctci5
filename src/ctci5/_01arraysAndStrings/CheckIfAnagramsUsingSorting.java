@@ -6,6 +6,7 @@ import java.util.Arrays;
 public class CheckIfAnagramsUsingSorting {
 	
 	static boolean areAnagrams(String x, String y) {
+		// short-circuit checking
 		if (x == null && y == null) {
 			return true;
 		}
