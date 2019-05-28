@@ -5,7 +5,7 @@ public class RunLengthEncoding {
 	static String encode(String s) {
 		// short-circuit checking
 		if (s == null || s.length() == 0) {
-			return s;
+			return s; // or IllegalArgumentException?
 		}
 		
 		StringBuilder sb = new StringBuilder();
@@ -29,17 +29,29 @@ public class RunLengthEncoding {
 	static String decode(String s) {
 		// short-circuit checking
 		if (s == null || s.length() == 0) {
-			return s;
+			return s; // or IllegalArgumentException?
 		}
 		
 		StringBuilder sb = new StringBuilder();
-		for (int i = 0; i < s.length(); i += 2) {
-			char c = s.charAt(i);
-			int count = s.charAt(i+1) - '0';
-			
-			for (int j = 0; j < count; j++) {
-				sb.append(c);
+		boolean charFlag = true;
+		char c = s.charAt(0);
+		int count = 0;
+		for (int i = 0; i < s.length(); i++) {
+			if (charFlag) {
+				c = s.charAt(i);
+			} else {
+				while (i < s.length() && s.charAt(i) >= '0' && s.charAt(i) <= '9') {
+					count = count * 10 + (s.charAt(i) - '0');
+					i++;
+				}
+				i--;
+
+				for (int j = 0; j < count; j++) {
+					sb.append(c);
+				}
+				count = 0;
 			}
+			charFlag = !charFlag;
 		}
 		
 		return sb.toString();
@@ -51,6 +63,14 @@ public class RunLengthEncoding {
 		System.out.println(decode(encoded));
 		
 		encoded = encode("c");
+		System.out.println(encoded);
+		System.out.println(decode(encoded));
+
+		encoded = encode("aaaaaaaaaaacddbbbbbbbbbbbb");
+		System.out.println(encoded);
+		System.out.println(decode(encoded));
+
+		encoded = encode("     ");
 		System.out.println(encoded);
 		System.out.println(decode(encoded));
 	}
